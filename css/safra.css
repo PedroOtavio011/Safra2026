@@ -145,7 +145,7 @@ header h2{
 
 #anotarCafe{
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 25px;
 }
@@ -209,6 +209,152 @@ header h2{
     background-color: var(--verde);
     color: white
 }
+
+#secRelatórios{
+    width: 90%;
+    background-color: white;
+    display: flex;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 15px;
+    flex-direction: column;
+}
+#filtroData{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-right: 20px
+}
+
+/* Estilizando o campo de data (mês) */
+#dataBusca {
+    width: 100%;
+    height: 55px;
+    padding: 0 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--verde);
+    background-color: white;
+    border: 2px solid var(--verde);
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none; /* Remove estilo padrão do sistema */
+    -webkit-appearance: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao clicar/focar no campo */
+#dataBusca:focus {
+    background-color: var(--verde);
+    color: white;
+    box-shadow: 0px 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* Ajuste para o ícone de calendário que aparece em alguns navegadores */
+#dataBusca::-webkit-calendar-picker-indicator {
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+/* Se o campo estiver em foco, o ícone fica branco */
+#dataBusca:focus::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+#secRelatórios input[type="radio"] {
+    display: none;
+}
+
+/* 1. COR APAGADA (Padrão para todos) */
+#secRelatórios label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1; 
+    height: 50px;
+    margin: 5px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    
+    /* Cor cinza "apagada" */
+    background-color: #d1d8e0; 
+    color: #7f8c8d;
+    
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. COR VERDE (Apenas quando o input estiver marcado) */
+#filtroMes:checked + label, 
+#filtroSemana:checked + label {
+    background-color: var(--verde); /* O verde que você definiu no :root */
+    color: white;
+    box-shadow: 0px 4px 10px rgba(40, 167, 69, 0.4);
+    transform: scale(1.05); /* Dá um leve destaque no tamanho */
+}
+
+/* Feedback de clique no mobile */
+#secRelatórios label:active {
+    transform: scale(0.95);
+}
+
+.circulo-stats {
+    width: 160px; /* Reduzi de 200px para 160px */
+    height: 160px;
+    border-radius: 50%;
+    /* Um degradê sutil que remete ao café/natureza */
+    background: white;
+    border: 6px solid #e0e0e0; /* Borda de fundo clara */
+    border-top: 6px solid #2e7d32; /* Destaque verde no topo */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06); /* Sombra bem suave */
+    position: relative;
+}
+
+.miolo-circulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#valor-central {
+    font-size: 2.8rem; /* Fonte grande, mas equilibrada */
+    font-weight: 800;
+    color: #1b5e20; /* Verde escuro para leitura fácil */
+    line-height: 1;
+}
+
+.miolo-circulo small {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+/* Efeito de "vidro" opcional para o fundo */
+.relat {
+    background: #f9fbf9;
+    padding: 20px;
+    border-radius: 20px;
+}
+
 
 
 

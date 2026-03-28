@@ -23,6 +23,7 @@
             <input type="button" value="ANOTAR CAFÉ ( LANÇAR )" id="lancar">
             <input type="button" value="MEUS APANHADORES" id="panhadores">
             <input type="button" value="RELATÓRIO SEMANAL" id="relatorio">
+            <input type="button" value="ENVIAR RELATÓRIOS" id="envRelatorios">
 
         </section>
 
@@ -57,12 +58,39 @@
                 <label for="sacas">Quantidades de Sacas</label>
                 <input type="number" name="Qsacas" id="Qsacas">
 
-                <input type="button" value="CONFIRMAR LANÇAR" id="lancarSaca">
+                <input type="button" value="CONFIRMAR LANÇAR" 
+                id="lancarSaca">
             </div>
         </section>
+            <section id="secRelatórios">
+                <div class="relat">
+                    <input type="month" name="dataBusca" id="dataBusca">
+
+                    <div id="botoesAlternar">
+                        <input type="radio" name="filtro" id="filtroMes" checked>
+                        <label for="filtroMes">MENSAL</label>
+
+                        <input type="radio" name="filtro" id="filtroSemana">
+                        <label for="filtroSemana">SEMANAL</label>
+                    </div>
+
+                    <div class="circulo-stats">
+                        <div class="miolo-circulo">
+                            <span id="valor-central">0</span>
+                            <small>Sacas</small>
+        </div>
+                    
+
+                </div>
+
+                    
+                </div>
+            </section>
+        
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script type="module" src="js/relatorios.js"></script>
     <script type="module" src="js/sacas.js"></script>
     <script type="module" src="js/cadastrarApanhadores.js"></script>
     <script type="module" src="js/lancarSacas.js"></script>

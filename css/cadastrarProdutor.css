@@ -1,0 +1,67 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+:root{
+    --verde: #28a745;
+    --aliceBLue: #EBF2FA;
+}
+
+            
+.h1Prod{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.progresso-total {
+    width: 90%;
+    max-width: 400px;
+    height: 12px;
+    background-color: #d1d1d1;
+    border-radius: 10px;
+    margin: 20px auto 5px auto;
+    overflow: hidden; /* Corta o que sobrar do verde */
+}
+
+/* O preenchimento verde */
+.barra-verde {
+    width: 50%; /* Começa em 50% porque é o Passo 1 */
+    height: 100%;
+    background-color: var(--verde);
+    transition: width 0.4s ease-in-out; /* Faz a barra "deslizar" */
+}
+
+#formCadastro{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#formCadastro input{
+    width: 80%;
+    height: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: none;
+}
+
+#formCadastro button{
+    height: 60px;
+    width: 90%;
+    padding: 20px;
+    margin-top: 10px;
+    border: none;;
+    border-radius: 40px;
+    background-color: var(--verde);
+    color: white;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.534);
+    justify-content: center;
+    align-items: center
+}

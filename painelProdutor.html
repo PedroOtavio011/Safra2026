@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFRA 2026</title>
+    <link rel="stylesheet" href="css/safra.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>SAFRA 2026</h1>
+            <h2>Olá, Produtor!</h2>
+        </header>
+        <section class="menuSaca">
+            <div class="menu">
+                <p class="stringColhido">TOTAL COLHIDO (SEMANA)</p>
+                <p class="sacas"></p>
+
+            </div>
+        </section>
+        <section class="utilidades">
+            <input type="button" value="ANOTAR CAFÉ ( LANÇAR )" id="lancar">
+            <input type="button" value="MEUS APANHADORES" id="panhadores">
+            <input type="button" value="RELATÓRIO SEMANAL" id="relatorio">
+
+        </section>
+
+        <section id="meusApanhadores">
+            <h2>Cadastrar Apanhador</h2>
+            <div class="cadastroApanhadores">
+                <label for="nome">Nome do Apanhador</label>
+                <input type="text" name="nome" id="nomeApanhador">
+                <label for="whatsApp">WhatsApp/Telefone</label>
+                <input type="text" name="whatsApp" id="whatsApp">
+                
+                <input type="button" value="CONFIRMAR CADASTRO" id="botaoCadastro">
+            </div>
+            <div class="equipe">
+                <div>
+                    <h3>Equipe Atual</h3>
+                    <div id="listaApanhadores"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="anotarCafe">
+            <div id="diaSaca">
+            </div>
+            <div class="lancar">
+                <label for="data">Data da Colheita</label>
+                <input type="date" name="data" id="data">
+
+                <label for="apanhador">Apanhador</label>
+                <select name="apanhador" id="selectApanhador"></select>
+
+                <label for="sacas">Quantidades de Sacas</label>
+                <input type="number" name="Qsacas" id="Qsacas">
+
+                <input type="button" value="CONFIRMAR LANÇAR" id="lancarSaca">
+            </div>
+        </section>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script type="module" src="js/sacas.js"></script>
+    <script type="module" src="js/cadastrarApanhadores.js"></script>
+    <script type="module" src="js/lancarSacas.js"></script>
+    
+</body>
+</html>

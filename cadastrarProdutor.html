@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CADASTRAR PRODUTOR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cadastrarProdutor.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1 class="h1Prod">CADASTRAR PRODUTOR - Passo 1/2</h1>
+            <div class="progresso-total">
+                <div class="barra-verde" id="barra-status"></div>
+            </div>
+        </header>
+
+        <form id="formCadastro">
+            <section id="passo1">
+            <h2>Dados da Fazenda</h2>
+            <input type="text" placeholder="Seu Nome" id="nome">
+            <input type="text" placeholder="Nome da Fazenda"id="nomeFazenda">
+            <input type="text" name="telefone" id="telefone" placeholder="Telefone">
+            <button type="button" onclick="proximoPasso()">PRÓXIMO</button>
+    </section>
+
+    <section id="passo2" style="display: none;">
+        <h2>Seu Login</h2>
+        <input type="email" placeholder="E-mail" id="email">
+        <input type="password" placeholder="Senha" id="senha">
+        <button type="button" onclick="voltarPasso()">VOLTAR</button>
+        <button type="submit" onclick="irIndex(event)">CONCLUIR</button>
+    </section>
+</form>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/bancoDados.js"></script>
+
+    <script type="module" src="js/cadastrarProdutor.js"></script>
+    
+</body>
+</html>

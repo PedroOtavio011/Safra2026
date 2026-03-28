@@ -1,0 +1,226 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --verde: #28a745;
+    --aliceBLue: #EBF2FA;    
+}
+
+body{
+    background-color: var(--aliceBLue);
+    font-family: Arial, Helvetica, sans-serif;
+}
+header h1{
+    font-size: 2.4em;
+    text-align: center;
+    color: var(--verde);
+    padding: 20px;
+}
+header h2{
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--verde);
+}
+.menuSaca{
+    display: none;
+    width: 90%;
+    background-color: white;
+    padding: 50px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.404);
+    
+}
+.stringColhido{
+    color: var(--verde);
+    font-size: 1.1em;
+}
+.sacas {
+    padding: 20px;
+    font-size: 2.5em;
+    color: var(--verde);
+    text-align: center;
+}
+.utilidades{
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    margin: 20px auto;
+    gap: 25px;   
+}
+.utilidades input{
+    width: 85%;
+    margin: auto;
+    background-color: var(--verde);
+    border: none;
+    height: 80px;
+    border-radius: 40px;
+    color: white;
+    font-size: 1.5em;
+}
+
+#meusApanhadores{
+    width: 90%;
+    display: none;
+    flex-direction: column;
+    gap: 25px;
+    background-color: white;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.404);
+}
+
+#meusApanhadores label{
+    text-align: center;
+    font-size: 1.5em;
+    color: var(--verde);
+}
+#meusApanhadores input{
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+#botaoCadastro{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--verde);
+    color: white;
+}
+#meusApanhadores h2{
+    text-align: center;
+    font-size: 2em;
+    color: var(--verde);
+}
+
+.equipe {
+
+    border-top: 2px solid var(--aliceBLue);
+    padding-top: 20px;
+}
+
+.equipe h3 {
+    color: var(--verde);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+/* Estilo de cada card de apanhador */
+.card-apanhador {
+    background-color: var(--aliceBLue);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Garante que o card ocupe a largura total */
+    display: flex; 
+    justify-content: space-between; /* Empurra os filhos para as pontas */
+    align-items: center; /* Centraliza o "X" na altura do texto */
+}
+
+.info-apanhador p {
+    margin: 0;
+    color: #333;
+}
+
+.info-apanhador strong {
+    color: var(--verde);
+}
+
+.btn-excluir {
+    color: #dc3545; /* Vermelho para excluir */
+    font-weight: bold;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+}
+
+
+
+#anotarCafe{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#diaSaca{
+    width: 70%;
+    display: flex;
+    background-color: white;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 15px;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#diaSaca h2{
+    text-align: center;
+    font-size: 1.4em; 
+}
+
+#diaSaca p{
+    text-align: center;
+    font-size: 1.4em;
+    color: var(--verde)
+}
+
+
+#anotarCafe label{
+    text-align: center;
+    font-size: 1.5em;
+    color: var(--verde);
+}
+
+.lancar{
+    width: 90%;
+    background-color: white;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 15px;
+    flex-direction: column;
+}
+
+#anotarCafe input{
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+#anotarCafe select{
+    width: 100%;
+    height: 50px;
+}
+
+#lancarSaca{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--verde);
+    color: white
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

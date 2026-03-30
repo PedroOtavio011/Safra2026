@@ -78,18 +78,38 @@
                         <div class="miolo-circulo">
                             <span id="valor-central">0</span>
                             <small>Sacas</small>
-        </div>
-                    
-
+                        </div>
+                    </div>
                 </div>
-
-                    
+               <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Média Diária</span>
+                    <div class="stat-value"><span id="mediaDiaria">0</span> <small>sc</small></div>
                 </div>
+                <div class="stat-card">
+                    <span class="stat-label">Maior Colheita</span>
+                    <div class="stat-value"><span id="maiorColheita">0</span> <small>sc</small></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Menor Colheita</span>
+                    <div class="stat-value"><span id="menorColheita">0</span> <small>sc</small></div>
+                </div>
+            </div>
+
+            </section>
+
+            <section id="enviarRelatorios">
+                <h2>Enviar Relatórios</h2>
+                <select name="apanhadores" id="selectApanhadores"></select>
+                
+                <input type="button" value="ENVIAR RELATÓRIO DIÁRIO" id="enviarRelatorioDiario">
+                <input type="button" value="ENVIAR RELATÓRIO SEMANAL" id="enviarRelatorioSemanal">
             </section>
         
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script type="module" src="js/enviarRelatorio.js"></script>
     <script type="module" src="js/relatorios.js"></script>
     <script type="module" src="js/sacas.js"></script>
     <script type="module" src="js/cadastrarApanhadores.js"></script>

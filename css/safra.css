@@ -213,7 +213,7 @@ header h2{
 #secRelatórios{
     width: 90%;
     background-color: white;
-    display: flex;
+    display: none;
     padding: 30px;
     margin: 20px auto;
     border-radius: 15px;
@@ -354,6 +354,91 @@ header h2{
     padding: 20px;
     border-radius: 20px;
 }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divide em 3 colunas iguais */
+    gap: 10px;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 12px 8px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.65rem;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #2e7d32; /* Verde café */
+}
+
+.stat-value small {
+    font-size: 0.6rem;
+    color: #aaa;
+    font-weight: 400;
+}
+
+#enviarRelatorios h2{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+#enviarRelatorios select{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: var(--verde) 2px solid;
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+
+#enviarRelatorios h2::before {
+    content: "👤"; 
+}
+
+#enviarRelatorios input{
+    display: inline-block;
+    width: 40%;
+    height: 150px;
+    margin-left: 7%;
+    border-radius: 40px;
+    border: none;
+    background-color: var(--verde);
+    color: white;
+    white-space: pre-wrap;
+    font-size: 1.2em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.404);
+}
+
+#enviarRelatorios input [value] {
+    font-size: 1.5em;
+}
+/* Ajuste para telas muito pequenas */
+@media (max-width: 360px) {
+    .stats-grid {
+        grid-template-columns: 1fr; /* Empilha em celulares muito estreitos */
+    }
+}
+
+
+
 
 
 

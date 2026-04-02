@@ -37,7 +37,7 @@ botaoRelatorioSemanal.addEventListener("click", () => {
 botaoEnviarRelatorio.addEventListener("click", () => {
     menuSaca.style.display = "none";
     utilidades.style.display = "none";
-    enviarRelatorio.style.display = "flex";
+    enviarRelatorio.style.display = "inline-block";
 });
 
 const botoesVoltar = document.querySelectorAll(".btn-voltar");

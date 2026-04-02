@@ -15,7 +15,7 @@ async function redefinirEmail() {
     }
 
     const { error } = await supabaseCliente.auth.resetPasswordForEmail(email,{
-        redirectTo: 'http://127.0.0.1:5500/atualizar-senha.html',
+        redirectTo: 'http://127.0.0.1:5500/atualizarSenha.html',
 
     });
 

@@ -28,6 +28,7 @@
         </section>
 
         <section id="meusApanhadores">
+            <button class="btn-voltar">⬅️ Voltar ao Menu</button>
             <h2>Cadastrar Apanhador</h2>
             <div class="cadastroApanhadores">
                 <label for="nome">Nome do Apanhador</label>
@@ -48,6 +49,7 @@
         <section id="anotarCafe">
             <div id="diaSaca">
             </div>
+            <button class="btn-voltar">⬅️ Voltar ao Menu</button>
             <div class="lancar">
                 <label for="data">Data da Colheita</label>
                 <input type="date" name="data" id="data">
@@ -63,6 +65,7 @@
             </div>
         </section>
             <section id="secRelatórios">
+                <button class="btn-voltar">⬅️ Voltar ao Menu</button>
                 <div class="relat">
                     <input type="month" name="dataBusca" id="dataBusca">
 
@@ -99,6 +102,7 @@
             </section>
 
             <section id="enviarRelatorios">
+                <button class="btn-voltar">⬅️ Voltar ao Menu</button>
                 <h2>Enviar Relatórios</h2>
                 <select name="apanhadores" id="selectApanhadores"></select>
                 
@@ -109,9 +113,12 @@
 
     </main>
     <script src="js/supaBaseLib.js"></script>
+    <script type="module" src="js/enviarRelatorio.js"></script>
     <script type="module" src="js/sacas.js"></script>
+    <script type="module" src="js/relatorios.js"></script>
     <script type="module" src="js/cadastrarApanhadores.js"></script>
     <script type="module" src="js/lancarSacas.js"></script>
+    <script type="module" src="js/proximoPasso.js"></script>
     
 </body>
 </html>

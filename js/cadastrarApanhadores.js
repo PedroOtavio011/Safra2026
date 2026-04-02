@@ -37,7 +37,7 @@ botao.addEventListener("click", async () => {
 
 });
 
-window.onload = async () => {
+document.addEventListener("DOMContentLoaded", async ()=> {
     let cards = document.getElementById("listaApanhadores")
 
     const {data: {session}}= await supabaseCliente.auth.getSession();
@@ -64,7 +64,7 @@ window.onload = async () => {
     </div>
 `;
     });
-}
+});
 window.excluirApanhador = async (id) => {
     const confirmacao = confirm("Tem certeza que deseja remover este apanhador?");
     

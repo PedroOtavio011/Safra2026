@@ -3,7 +3,7 @@ import {supabaseCliente} from "./bancoDados.js";
 const elementoSacas = document.querySelector(".sacas");
 
 
-window.onload = async () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const { data: { session } } = await supabaseCliente.auth.getSession();
     if (!session) {
         window.location.href = "index.html";
@@ -41,4 +41,4 @@ window.onload = async () => {
 
 
     
-}
+})

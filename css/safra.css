@@ -9,7 +9,7 @@
 }
 
 body{
-    background-color: var(--aliceBLue);
+    background-color: var(--aliceBLue) !important;; 
     font-family: Arial, Helvetica, sans-serif;
 }
 header h1{
@@ -24,9 +24,9 @@ header h2{
     color: var(--verde);
 }
 .menuSaca{
-    display: none;
+    display:flex;
     width: 90%;
-    background-color: white;
+    background-color: white !important;;
     padding: 50px;
     margin: 20px auto;
     border-radius: 15px;
@@ -45,7 +45,7 @@ header h2{
 }
 .utilidades{
     width: 100%;
-    display: none;
+    display: flex;
     flex-direction: column;
     margin: 20px auto;
     gap: 25px;   
@@ -66,7 +66,7 @@ header h2{
     display: none;
     flex-direction: column;
     gap: 25px;
-    background-color: white;
+    background-color: white !important;;
     padding: 30px;
     margin: 20px auto;
     border-radius: 15px;
@@ -114,7 +114,7 @@ header h2{
 
 /* Estilo de cada card de apanhador */
 .card-apanhador {
-    background-color: var(--aliceBLue);
+    background-color: var(--aliceBLue) !important;;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -153,7 +153,7 @@ header h2{
 #diaSaca{
     width: 70%;
     display: flex;
-    background-color: white;
+    background-color: white !important;;
     padding: 30px;
     margin: 20px auto;
     border-radius: 15px;
@@ -181,7 +181,7 @@ header h2{
 
 .lancar{
     width: 90%;
-    background-color: white;
+    background-color: white !important;;
     padding: 30px;
     margin: 20px auto;
     border-radius: 15px;
@@ -207,12 +207,12 @@ header h2{
     border-radius: 10px;
     border: none;
     background-color: var(--verde);
-    color: white
+    color: white;
 }
 
 #secRelatórios{
     width: 90%;
-    background-color: white;
+    background-color: white !important;;
     display: none;
     padding: 30px;
     margin: 20px auto;
@@ -287,7 +287,7 @@ header h2{
     font-weight: bold;
     
     /* Cor cinza "apagada" */
-    background-color: #d1d8e0; 
+    background-color: #d1d8e0 !important;; 
     color: #7f8c8d;
     
     transition: all 0.3s ease;
@@ -394,6 +394,10 @@ header h2{
     font-weight: 400;
 }
 
+#enviarRelatorios{
+    display: none;
+}
+
 #enviarRelatorios h2{
     text-align: center;
     margin-top: 20px;
@@ -430,6 +434,39 @@ header h2{
 #enviarRelatorios input [value] {
     font-size: 1.5em;
 }
+
+/* Estilo Geral do Botão Voltar */
+.btn-voltar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f5f5f5; /* Fundo claro para destacar no fundo escuro */
+    justify-content: center;
+    color: #2e7d32; /* Verde da Safra */
+    border: 2px solid #2e7d32;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 auto 30px auto;; /* Espaço para não grudar no título */
+    transition: all 0.2s ease;
+    width: 80%; /* Ocupa apenas o tamanho do texto */
+    max-width: 300px;
+}
+
+/* Efeito de Clique (Importante para Mobile) */
+.btn-voltar:active {
+    transform: scale(0.92);
+    background-color: #e8f5e9;
+}
+
+/* Se quiser um ícone mais profissional antes do texto */
+.btn-voltar::before {
+    content: "⬅";
+    font-size: 16px;
+}
+
 /* Ajuste para telas muito pequenas */
 @media (max-width: 360px) {
     .stats-grid {

@@ -28,10 +28,10 @@ async function login() {
         window.location.href = "painelProdutor.html";
     }
 }
-window.onload = async () => {
+document.addEventListener("DOMContentLoaded", async ()=> {
     const { data: { session } } = await supabaseCliente.auth.getSession();
     if (session) {
         // Se já tem sessão, manda direto para o painel
         window.location.href = "painelProdutor.html";
     }
-};
+});

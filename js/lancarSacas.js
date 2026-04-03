@@ -6,7 +6,7 @@ const dataColheita = document.getElementById("data");
 const apanhadorSelect = document.getElementById("selectApanhador");
 const quantidade = document.getElementById("Qsacas");
 let botao = document.getElementById("lancarSaca");
-
+const originalText = botao.value;
 
 botao.addEventListener("click", async () => {
         botao.disabled = true;
@@ -21,8 +21,10 @@ botao.addEventListener("click", async () => {
         window.location.href = "index.html";
         return;    
     }
-    if(!data || !apanhador || !sacas){
-        alert("Preencha todos os campos");
+    if(!data || !apanhador || !sacas || Number(sacas) <= 0){
+        alert("Preencha todos os campos ou digite uma quantidade válida!");
+        botao.value = originalText;
+        botao.disabled = false;
         return;
     }
     const {data: lancamentos, error} = await supabaseCliente
@@ -36,7 +38,8 @@ botao.addEventListener("click", async () => {
     if(error){
         alert("Erro ao cadastrar: " + error.message);
         return;
-    }else{
+    }
+    else{
         alert("Lançamento realizado com sucesso!")
         dataColheita.value = "";
         apanhadorSelect.value = "";
@@ -78,6 +81,8 @@ window.onload = async () => {
 
     if(error) {
         console.error(error);
+        botao.disabled = false;
+        botao.value = originalText;
         return;
     }
 
@@ -85,6 +90,7 @@ window.onload = async () => {
     sacas.forEach(lancamento => {
         totalSacas += Number(lancamento.quantidade);
     });
+
 
     // 4. ATUALIZAR HTML
     dadosDia.innerHTML = `

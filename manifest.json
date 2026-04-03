@@ -1,0 +1,21 @@
+{
+  "name": "Safra 2026 - FD.tech",
+  "short_name": "Safra 2026",
+  "description": "Gerenciamento de colheita de café",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e7d32",
+  "icons": [
+    {
+      "src": "icone-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

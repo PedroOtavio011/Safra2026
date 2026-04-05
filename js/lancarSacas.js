@@ -27,52 +27,75 @@ botao.addEventListener("click", async () => {
         botao.disabled = false;
         return;
     }
-    const {data: lancamentos, error} = await supabaseCliente
-    .from("lancamentos_sacas")
-    .insert({
-       quantidade: Number(sacas),
-       data_lancamento: data,
-       idProd: session.user.id,
-       idApanhador: apanhador
-    });
-    if(error){
-        alert("Erro ao cadastrar: " + error.message);
-        return;
-    }
+
+    const novoLancamento = {
+        quantidade: Number(sacas),
+        data_lancamento: data,
+        idProd: session.user.id,
+        idApanhador: apanhador
+    };
+
+    if(navigator.onLine){
+        const {error} = await supabaseCliente
+            .from("lancamentos_sacas")
+            .insert(novoLancamento);
+
+            if(error){
+                console.error(error);
+                alert("Erro ao salvar lançamento. Tente novamente.");
+                botao.value = originalText;
+                botao.disabled = false;
+            } else {
+                alert("Lançamento salvo com sucesso!");
+                location.reload();
+            }
+        }
     else{
-        alert("Lançamento realizado com sucesso!")
-        dataColheita.value = "";
-        apanhadorSelect.value = "";
-        quantidade.value = "";
-        location.reload();
+        salvarOffiline(novoLancamento);
+        botao.value = originalText;
+        botao.disabled = false;        
     }
+
     
-});
+
+   
+    });
+    
+    
+;
 
 window.onload = async () => {
-    const {data: {session}} = await supabaseCliente.auth.getSession();
-    if(!session) return;
+    const { data: { session } } = await supabaseCliente.auth.getSession();
+    if (!session) return;
 
-    // 1. FORMATAR DATA
-    const dataAtual = new Date().toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-    });
+    // --- LÓGICA DE APANHADORES COM CACHE ---
+    let apanhadores;
 
-    // 2. BUSCAR APANHADORES (Lógica do Select)
-    const { data: apanhadores } = await supabaseCliente
-        .from("apanhadores")
-        .select("id, nome_apanhador")
-        .eq("idProd", session.user.id);
+    if (navigator.onLine) {
+        // Se tem internet, busca no Supabase e atualiza o Cache
+        const { data: buscaApanhadores } = await supabaseCliente
+            .from("apanhadores")
+            .select("id, nome_apanhador")
+            .eq("idProd", session.user.id);
+        
+        if (buscaApanhadores) {
+            apanhadores = buscaApanhadores;
+            localStorage.setItem("cache_apanhadores", JSON.stringify(apanhadores));
+            console.log("Apanhadores atualizados via Nuvem.");
+        }
+    } else {
+        // Se está offline, tenta pegar o que ficou guardado no celular
+        apanhadores = JSON.parse(localStorage.getItem("cache_apanhadores"));
+        console.log("Apanhadores carregados do Cache (Offline).");
+    }
 
+    // Preenche o Select (Independente de onde veio o dado)
     if (apanhadores) {
         apanhadorSelect.innerHTML = '<option value="">Selecione um apanhador</option>';
         apanhadores.forEach(ap => {
             apanhadorSelect.innerHTML += `<option value="${ap.id}">${ap.nome_apanhador}</option>`;
         });
     }
-
     // 3. BUSCAR TOTAL DE SACAS (Lógica do Painel)
     const { data: sacas, error } = await supabaseCliente
         .from("lancamentos_sacas")
@@ -100,8 +123,28 @@ window.onload = async () => {
 };
 
 
+// Modo Offine
 
+function salvarOffiline(dados){
+    let pendentes = JSON.parse(localStorage.getItem("lancamentos_pendentes")) || [];
+    pendentes.push(dados);
+    localStorage.setItem("lancamentos_pendentes", JSON.stringify(pendentes));
+    alert("Lançamento salvo offline! Ele será enviado quando a conexão for restabelecida.");
+}
 
+async function sincronizarDados(){
+    if(!pendentes || pendentes.length === 0) return;
 
+    const {error} = await supabaseCliente
+        .from("lancamentos_sacas")
+        .insert(pendentes);
 
+    if(!error){
+        localStorage.removeItem("lancamentos_pendentes");
+        alert("Dados sincronizados com sucesso!");
+        location.reload();
+    }
+}
+
+window.addEventListener("online", sincronizarDados);
 

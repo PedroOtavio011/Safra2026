@@ -68,6 +68,9 @@ window.onload = async () => {
     const { data: { session } } = await supabaseCliente.auth.getSession();
     if (!session) return;
 
+    const dataAtual = new Date().toLocaleDateString("pt-BR");
+
+
     // --- LÓGICA DE APANHADORES COM CACHE ---
     let apanhadores;
 
@@ -117,7 +120,7 @@ window.onload = async () => {
     }
 
     // Soma o que está pendente no celular (Offline)
-    const pendentes = JSON.parse(localStorage.getItem("sacas_pendentes")) || [];
+    const pendentes = JSON.parse(localStorage.getItem("lancamentos_pendentes")) || [];
     pendentes.forEach(p => totalSacas += Number(p.quantidade));
 
     // Atualiza o HTML com a soma real
@@ -138,6 +141,8 @@ function salvarOffiline(dados){
 }
 
 async function sincronizarDados(){
+    const pendentes = JSON.parse(localStorage.getItem("lancamentos_pendentes")) || [];
+
     if(!pendentes || pendentes.length === 0) return;
 
     const {error} = await supabaseCliente

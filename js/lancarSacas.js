@@ -110,12 +110,17 @@ window.onload = async () => {
     }
 
     let totalSacas = 0;
-    sacas.forEach(lancamento => {
-        totalSacas += Number(lancamento.quantidade);
-    });
 
+// Soma o que veio do Banco (Online)
+    if (sacas) {
+        sacas.forEach(l => totalSacas += Number(l.quantidade));
+    }
 
-    // 4. ATUALIZAR HTML
+    // Soma o que está pendente no celular (Offline)
+    const pendentes = JSON.parse(localStorage.getItem("sacas_pendentes")) || [];
+    pendentes.forEach(p => totalSacas += Number(p.quantidade));
+
+    // Atualiza o HTML com a soma real
     dadosDia.innerHTML = `
         <h2>${dataAtual}</h2>
         <p class="total-sacas"><strong>${totalSacas}</strong> Sacas (Total Safra)</p>

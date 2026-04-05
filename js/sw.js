@@ -48,10 +48,12 @@ self.addEventListener('activate', (e) => {
 });
 
 // 3. Estratégia: Tenta a rede, se falhar (offline), usa o cache
+// 3. Estratégia: Cache First (Entrega o que está no celular na hora!)
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    fetch(e.request).catch(() => {
-      return caches.match(e.request);
+    caches.match(e.request).then((response) => {
+      // Se tiver no cache, manda ver. Se não, tenta baixar da rede.
+      return response || fetch(e.request);
     })
   );
 });

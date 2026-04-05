@@ -10,18 +10,18 @@ const assets = [
   './alterarSenha.html',
   './manifest.json',
   './CSS/style.css', // Verifique se o nome da pasta é CSS ou css
-  './js/bancoDados.js',
-  './js/lancarSacas.js',
-  './js/login.js',
-  './js/cadastrarApanhadores.js',
-  './js/cadastrarProdutor.js',
-  './js/supaBaseLib.js',
-  './js/sacas.js',
-  './js/relatorios.js',
-  './js/enviarRelatorio.js',
-  './js/proximoPasso.js',
-  './js/redefinirSenha.js',
-  './js/atualizarSenha.js',
+  './bancoDados.js',
+  './lancarSacas.js',
+  './login.js',
+  './cadastrarApanhadores.js',
+  './cadastrarProdutor.js',
+  './supaBaseLib.js',
+  './sacas.js',
+  './relatorios.js',
+  './enviarRelatorio.js',
+  './proximoPasso.js',
+  './redefinirSenha.js',
+  './atualizarSenha.js',
   './icone-192.png',
   './icone-512.png'
 ];
@@ -47,7 +47,6 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// 3. Estratégia: Tenta a rede, se falhar (offline), usa o cache
 // 3. Estratégia: Cache First (Entrega o que está no celular na hora!)
 self.addEventListener('fetch', (e) => {
   e.respondWith(

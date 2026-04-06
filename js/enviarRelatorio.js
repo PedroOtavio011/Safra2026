@@ -159,12 +159,16 @@ botaoRelatorioSemanal.addEventListener("click", async () => {
         const totalSacas = lancamentos.reduce((acc, item) => acc + Number(item.quantidade), 0);
 
         if (totalSacas > 0) {
+            let totalAPagar = prompt("Digite o valor atual da saca:");
+            let valorPorSaca = Number(totalAPagar.replace(',', '.'));
+            let valorT = (valorPorSaca * totalSacas).toLocaleString("pt-BR", {style: 'currency', currency: 'BRL'});
             let mensagem = `*☕ RELATÓRIO SEMANAL - SAFRA 2026*%0A` +
                 `*------------------------------------*%0A%0A` +
                 `Olá, *${apanhador.nome_apanhador}*!%0A` +
                 `Aqui está o resumo da sua colheita dos últimos 7 dias:%0A%0A` +
                 `📅 *Período:* ${seteDiasAtras.toLocaleDateString("pt-BR")} a ${hoje.toLocaleDateString("pt-BR")}%0A` +
                 `📦 *Total:* ${totalSacas} sacas%0A%0A` +
+                `Total à pagar: ${valorT}` +
                 `*------------------------------------*%0A` +
                 `_Gerado por FD.tech_`;
 

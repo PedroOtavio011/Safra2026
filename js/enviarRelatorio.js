@@ -115,6 +115,8 @@ botaoRelatorioDiario.addEventListener("click", async () => {
     }
 });
 
+atualizarStatusBotaoRelatorio()
+
 //Relatório Semanal
 botaoRelatorioSemanal.addEventListener("click", async () => {
     const nomeSelecionado = apanhadoresSelect.value;
@@ -168,7 +170,8 @@ botaoRelatorioSemanal.addEventListener("click", async () => {
                 `Aqui está o resumo da sua colheita dos últimos 7 dias:%0A%0A` +
                 `📅 *Período:* ${seteDiasAtras.toLocaleDateString("pt-BR")} a ${hoje.toLocaleDateString("pt-BR")}%0A` +
                 `📦 *Total:* ${totalSacas} sacas%0A%0A` +
-                `Total à pagar: ${valorT}` +
+                `Total à pagar: ${valorT}
+                ` +
                 `*------------------------------------*%0A` +
                 `_Gerado por FD.tech_`;
 
@@ -186,4 +189,26 @@ botaoRelatorioSemanal.addEventListener("click", async () => {
         console.error("Erro geral:", err);
     }
 });
+
+// Função para verificar o dia e aplicar o estilo
+function atualizarStatusBotaoRelatorio() {
+    const hoje = new Date();
+    const diaDaSemana = hoje.getDay(); // 0 = Domingo, 6 = Sábado
+
+    if (diaDaSemana === 6) {
+        // É sábado: Verde e Habilitado
+        botaoRelatorioSemanal.style.backgroundColor = "#28a745"; // Verde WhatsApp
+        botaoRelatorioSemanal.style.color = "white";
+        botaoRelatorioSemanal.style.cursor = "pointer";
+        botaoRelatorioSemanal.disabled = false;
+        botaoRelatorioSemanal.title = "Relatório disponível!";
+    } else {
+        // Outros dias: Vermelho e Desabilitado
+        botaoRelatorioSemanal.style.backgroundColor = "#dc3545"; // Vermelho
+        botaoRelatorioSemanal.style.color = "white";
+        botaoRelatorioSemanal.style.cursor = "not-allowed";
+        botaoRelatorioSemanal.disabled = true;
+        botaoRelatorioSemanal.title = "Relatórios só podem ser gerados aos sábados.";
+    }
+};
 

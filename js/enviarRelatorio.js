@@ -115,11 +115,14 @@ botaoRelatorioDiario.addEventListener("click", async () => {
     }
 });
 
-atualizarStatusBotaoRelatorio()
 
+atualizarStatusBotaoRelatorio(); 
 //Relatório Semanal
-botaoRelatorioSemanal.addEventListener("click", async () => {
+botaoRelatorioSemanal.onclick = async () => {
+    // Verifica o dia e atualiza o botão
+    console.log("Gerando relatório semanal..."); // Para você ver no F12
     const nomeSelecionado = apanhadoresSelect.value;
+    console.log("Nome selecionado:", nomeSelecionado)
 
     if (!nomeSelecionado) {
         alert("⚠️ Selecione um apanhador primeiro!");
@@ -127,11 +130,14 @@ botaoRelatorioSemanal.addEventListener("click", async () => {
     }
 
     const { data: { session } } = await supabaseCliente.auth.getSession();
+     console.log("Session:", session?.user?.id);
     if (!session) return;
 
     const hoje = new Date();
     const seteDiasAtras = new Date(hoje);
     seteDiasAtras.setDate(hoje.getDate() - 7);
+
+
 
     try {
         const { data: apanhador, error } = await supabaseCliente
@@ -158,27 +164,52 @@ botaoRelatorioSemanal.addEventListener("click", async () => {
             return;
         }
 
-        const totalSacas = lancamentos.reduce((acc, item) => acc + Number(item.quantidade), 0);
+        const {data: adiantamentos, error: errAdiantamentos} = await supabaseCliente
+            .from("adiantamentos")
+            .select("valorAdiantamento")
+            .eq("id_apanhador", apanhador.id)
+            .gte("data", seteDiasAtras.toISOString().split('T')[0])
+            .lte("data", hoje.toISOString());
 
+            if (errAdiantamentos) {
+                console.error("Erro ao buscar adiantamentos:", errAdiantamentos);
+                return;
+            }
+
+                const totalSacas = lancamentos.reduce((acc, item) => acc + Number(item.quantidade), 0);
+                const totalAdiantamentos = adiantamentos.reduce((acc, item) => acc + Number(item.valorAdiantamento), 0);
+        
         if (totalSacas > 0) {
             let totalAPagar = prompt("Digite o valor atual da saca:");
-            let valorPorSaca = Number(totalAPagar.replace(',', '.'));
-            let valorT = (valorPorSaca * totalSacas).toLocaleString("pt-BR", {style: 'currency', currency: 'BRL'});
+            if(!totalAPagar) return
+            console.log("1. Input bruto:", JSON.stringify(totalAPagar));
+            let valorPorSaca = Number(totalAPagar.trim().replace(',', '.'));
+            if(isNaN(valorPorSaca) || valorPorSaca <= 0) {
+                alert("⚠️ Valor inválido. Por favor, insira um valor positivo.");
+                return;
+            }
+            const adiantamentosFormatado = totalAdiantamentos.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+            let valorT = (valorPorSaca * totalSacas)
+            let valorFinal = (valorT - totalAdiantamentos).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
             let mensagem = `*☕ RELATÓRIO SEMANAL - SAFRA 2026*%0A` +
                 `*------------------------------------*%0A%0A` +
                 `Olá, *${apanhador.nome_apanhador}*!%0A` +
                 `Aqui está o resumo da sua colheita dos últimos 7 dias:%0A%0A` +
                 `📅 *Período:* ${seteDiasAtras.toLocaleDateString("pt-BR")} a ${hoje.toLocaleDateString("pt-BR")}%0A` +
-                `📦 *Total:* ${totalSacas} sacas%0A%0A` +
-                `Total à pagar: ${valorT}
-                ` +
+                `📦 *Total:* ${totalSacas} sacas%0A` +
+                `💰 *Valor por saca:* R$ ${valorPorSaca.toFixed(2).replace('.', ',')}%0A` +
+                `💷 *Valor sem descontos:* R$ ${valorT.toFixed(2).replace('.', ',')}%0A`+
+                `⏳ *Adiantamentos:* R$ ${adiantamentosFormatado}%0A%0A%0A` +
+                `💵 *Total à pagar:* R$ ${valorFinal}%0A%0A%0A` +
                 `*------------------------------------*%0A` +
                 `_Gerado por FD.tech_`;
 
             // Abre o WhatsApp
-            const linkWa = apanhador.telefone_apanhador 
-                ? `https://api.whatsapp.com/send?phone=55${apanhador.telefone_apanhador.replace(/\D/g, '')}&text=${mensagem}`
-                : `https://api.whatsapp.com/send?text=${mensagem}`;
+            const telefone = apanhador.telefone_apanhador?.replace(/\D/g, '') || null;
+
+            const linkWa = telefone
+            ? `https://api.whatsapp.com/send?phone=55${telefone}&text=${mensagem}`
+            : `https://api.whatsapp.com/send?text=${mensagem}`;
 
             window.open(linkWa, "_blank");
         } else {
@@ -188,7 +219,7 @@ botaoRelatorioSemanal.addEventListener("click", async () => {
     } catch (err) {
         console.error("Erro geral:", err);
     }
-});
+};
 
 // Função para verificar o dia e aplicar o estilo
 function atualizarStatusBotaoRelatorio() {

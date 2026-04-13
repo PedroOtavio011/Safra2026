@@ -6,6 +6,8 @@ const meusApanhadores = document.getElementById("meusApanhadores");
 const lancarSacas = document.getElementById("anotarCafe");
 const relatorioSemanal = document.getElementById("secRelatórios");
 const enviarRelatorio = document.getElementById("enviarRelatorios");
+const adiantamentos = document.getElementsByClassName("adiantamentos")[0];
+
 
 
 //Botões para mostrar as telas correspondentes
@@ -14,6 +16,7 @@ const botaoMeusApanhadores = document.getElementById("panhadores");
 const botaoLancarSacas = document.getElementById("lancar");
 const botaoRelatorioSemanal = document.getElementById("relatorio");
 const botaoEnviarRelatorio = document.getElementById("envRelatorios");
+const botaoAdiantamentos = document.getElementById("adiantamentos");
 
 
 botaoLancarSacas.addEventListener("click", () => {
@@ -40,6 +43,12 @@ botaoEnviarRelatorio.addEventListener("click", () => {
     enviarRelatorio.style.display = "inline-block";
 });
 
+botaoAdiantamentos.addEventListener("click", () => {
+    menuSaca.style.display = "none";
+    utilidades.style.display = "none";
+    adiantamentos.style.display = "flex";
+});
+
 const botoesVoltar = document.querySelectorAll(".btn-voltar");
 
 botoesVoltar.forEach(btn => {
@@ -52,9 +61,12 @@ botoesVoltar.forEach(btn => {
         lancarSacas.style.display = "none";
         relatorioSemanal.style.display = "none";
         enviarRelatorio.style.display = "none";
+        adiantamentos.style.display = "none";
 
         // 2. Mostra o menu principal e as utilidades novamente
         menuSaca.style.display = "flex";
         utilidades.style.display = "flex";
     });
+
+
 });

@@ -22,6 +22,7 @@
         <section class="utilidades">
             <input type="button" value="ANOTAR CAFÉ ( LANÇAR )" id="lancar">
             <input type="button" value="MEUS APANHADORES" id="panhadores">
+            <input type="button" value="ADIANTAMENTOS" id="adiantamentos">
             <input type="button" value="RELATÓRIO SEMANAL" id="relatorio">
             <input type="button" value="ENVIAR RELATÓRIOS" id="envRelatorios">
 
@@ -109,10 +110,27 @@
                 <input type="button" value="ENVIAR RELATÓRIO DIÁRIO" id="enviarRelatorioDiario">
                 <input type="button" value="ENVIAR RELATÓRIO SEMANAL" id="enviarRelatorioSemanal">
             </section>
+
+            <section class="adiantamentos">
+                <button class="btn-voltar">⬅️ Voltar ao Menu</button>
+                <h2>Adiantamentos</h2>
+                <div class="adiantamento-form">
+                    <label for="apanhadorAdiantamento">Apanhador</label>
+                    <select name="apanhadorSelect" id="apanhadorSelect"></select>
+
+                    <label for="dataLancamento">Data do Lançamento</label>
+                    <input type="date" name="dataLancamento" id="dataLancamento">
+
+                    <label for="valorAdiantamento">Valor do Adiantamento</label>
+                    <input type="number" name="valorAdiantamento" id="valorAdiantamento">
+
+                    <input type="button" value="REGISTRAR ADIANTAMENTO" id="registrarAdiantamento">
+            </section>
         
 
     </main>
     <script src="js/supaBaseLib.js"></script>
+    <script type="module" src="js/adiantamentos.js"></script>
     <script type="module" src="js/enviarRelatorio.js"></script>
     <script type="module" src="js/sacas.js"></script>
     <script type="module" src="js/relatorios.js"></script>

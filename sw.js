@@ -9,7 +9,7 @@ const assets = [
   './atualizarSenha.html',
   './alterarSenha.html',
   './manifest.json',
-  './CSS/style.css', // Verifique se o nome da pasta é CSS ou css
+  './CSS/style.css', 
   './bancoDados.js',
   './lancarSacas.js',
   './login.js',

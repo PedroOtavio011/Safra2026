@@ -79,4 +79,3 @@ window.proximoPasso = proximoPasso;
 window.voltarPasso = voltarPasso;
 window.irIndex = irIndex;
 
- 

@@ -128,6 +128,7 @@ window.onload = async () => {
         <h2>${dataAtual}</h2>
         <p class="total-sacas"><strong>${totalSacas}</strong> Sacas (Total Safra)</p>
     `;
+    listarLancamentos();
 };
 
 
@@ -154,6 +155,68 @@ async function sincronizarDados(){
         alert("Dados sincronizados com sucesso!");
         location.reload();
     }
+}
+
+const lancamento = document.getElementById("lancamentosDia");
+
+async function excluirLancamento(id) {
+    const { data: banco, error } = await supabaseCliente
+        .from('lancamentos_sacas')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error(error);
+        alert("Erro ao excluir lançamento. Tente novamente.");
+    } else {
+        alert("Lançamento excluído com sucesso!");
+        location.reload();
+    }
+}
+
+const containerLancamentos = document.getElementById("lancamentosDia");
+
+containerLancamentos.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-excluir")) {
+        const idDoLancamento = e.target.getAttribute("data-id");
+        
+        if (confirm("Tem certeza que deseja excluir este lançamento?")) {
+            excluirLancamento(idDoLancamento);
+        }
+    }
+});
+
+async function listarLancamentos() {
+    const { data: { session } } = await supabaseCliente.auth.getSession();
+    if (!session) return;
+
+    // 1. Buscamos o id junto com os outros dados
+    const { data: lancamentos, error } = await supabaseCliente
+        .from("lancamentos_sacas")
+        .select(`
+            id, 
+            quantidade, 
+            data_lancamento,
+            apanhadores (
+                nome_apanhador
+            )
+        `) 
+    .eq("idProd", session.user.id)
+    .eq("data_lancamento", new Date().toISOString().split("T")[0]);
+
+    if (error) return console.error(error);
+
+    const container = document.getElementById("lancamentosDia");
+    container.innerHTML = ""; // Limpa a lista antes de desenhar
+
+    lancamentos.forEach(l => {
+        container.innerHTML += `
+            <div class="item-lancamento">
+                <p>Apanhador: ${l.apanhadores.nome_apanhador} - Data: ${l.data_lancamento} - Qtd: ${l.quantidade} sacas</p>
+                <button class="btn-excluir" data-id="${l.id}">Excluir</button>
+        </div>
+        `;
+    });
 }
 
 window.addEventListener("online", sincronizarDados);
